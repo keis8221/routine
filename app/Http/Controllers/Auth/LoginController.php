@@ -37,4 +37,21 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+
+        /**
+     * Overrides default logout: logs out user from system
+     *
+     * @return void
+     */
+    public function logout(Request $request) {
+        // Use specific guard to log out
+        Auth::guard('user')->logout();
+
+        // Invalidates the current session.
+        // Clears all session attributes and flashes and regenerates the session and deletes the old session from persistence.
+        $request->session()->invalidate();
+
+        // Redirect back to login
+        return redirect('/admin/login');
+    }
 }
