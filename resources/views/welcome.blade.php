@@ -81,7 +81,6 @@
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item"><a class="nav-link" href="{{ route('login') }}">login</a></li>
                         <li class="nav-item"><a class="nav-link" href="{{ route('register') }}">register</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#signup">Contact</a></li>
                     </ul>
                 </div>
             </div>
