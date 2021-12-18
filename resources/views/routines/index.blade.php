@@ -1,23 +1,18 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">Dashboard</div>
+<div class="container mt-4">
+  <div class="row d-flex justify-content-center">
+    <div class="row col-md-12">
 
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
+        <aside class="col-3 d-none d-md-block position-fixed">
+        
+        </aside>
+        <main class="col-md-7 offset-md-5">
+        </main>
 
-                    You are logged in!
-                </div>
-            </div>
-        </div>
     </div>
+  </div>
+  <a href="{{ route('users.show', ['id' => Auth::user()->id]) }}">Myroutine</a>
 </div>
 @endsection
