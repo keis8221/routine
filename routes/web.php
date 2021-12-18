@@ -14,15 +14,15 @@
 Route::get('/', function () {
     return view('welcome');
 });
-// Route::GET('admin/login', 'Auth\LoginController@showLoginForm')->name('login');
-// Route::POST('admin/login', 'Auth\LoginController@login')->name('login');
-// // This prevents user from accessing logout via url
-// Route::GET('logout', 'Auth\LoginController@logout')->name('logout');
 
 
 
 Auth::routes();
+# ユーザー投稿関係(index, show)
 
+Route::get('/routine', 'RoutineController@index')->name('routines.index');
 Route::get('/home', 'HomeController@index')->name('home');
+// Route::GROUP(['middleware' => ['auth:user']], function() {
 
+// });
 // Route::get('/admin', 'UserController@admin')->name('admin');

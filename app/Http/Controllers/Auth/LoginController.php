@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers\Auth;
 
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class LoginController extends Controller
@@ -39,6 +43,21 @@ class LoginController extends Controller
     }
 
         /**
+     * ログイン後の処理
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     * @override \Illuminate\Http\Foundation\Auth\AuthenticatesUsers
+     */
+    protected function authenticated(Request $request)
+    {
+        // フラッシュメッセージを表示
+        toastr()->success('ログインしました');
+        return redirect($this->redirectTo);
+    }
+    
+
+        /**
      * Overrides default logout: logs out user from system
      *
      * @return void
@@ -54,4 +73,6 @@ class LoginController extends Controller
         // Redirect back to login
         return redirect('/admin/login');
     }
+
+    
 }
