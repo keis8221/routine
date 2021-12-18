@@ -5,7 +5,7 @@
     <div class="row">
       <div class="mx-auto col-md-7">
         <div class="card mt-3">
-          <h2 class="h4 card-header text-center sunny-morning-gradient text-white">ログイン</h2>
+          <h2 class="h4 card-header text-center rare-wind-gradient text-white">ログイン</h2>
           <div class="card-body">
             <div class="user-form my-4">
               <form method="POST" action="{{ route('login') }}">
@@ -25,7 +25,7 @@
                 <input type="hidden" name="remember" id="remember" value="on">
 
                 <div class="d-flex justify-content-between">
-                  <button class="btn purple-gradient" type="submit" text-while>
+                  <button class="btn rare-wind-gradient" type="submit" text-while>
                     ログイン
                   </button>
                   <a href="" class="btn btn-default p-3">

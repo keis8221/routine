@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\Controller;
+use App\Models\User;
+
 use Log;
 use Config;
 
@@ -18,6 +20,7 @@ class RoutineController extends Controller
     */
    public function index(Request $request)
    {
+       $user = new User();
     //    // ユーザー投稿を検索で検索
     //    $freeWord = $request->input('free_word');
 
@@ -39,7 +42,7 @@ class RoutineController extends Controller
     //    $mainTags = $this->tagRepository->getMainTags();
 
        return view(
-           'routines.index'
+           'routines.index',['user' => $user]
        );
    }
 }

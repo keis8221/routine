@@ -6,7 +6,7 @@
     <div class="row">
       <div class="mx-auto col-md-7">
         <div class="card">
-          <h2 class="h4 card-header text-center purple-gradient text-white">ユーザー登録</h2>
+          <h2 class="h4 card-header text-center rare-wind-gradient text-white">ユーザー登録</h2>
           <div class="card-body">
 
             <div class="user-form my-4">
