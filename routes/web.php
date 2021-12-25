@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Http\Request;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -21,6 +23,19 @@ Auth::routes();
 # ユーザー投稿関係(index, show)
 
 Route::get('/routine', 'RoutineController@index')->name('routines.index');
+Route::post('/routine/add', 'RoutineController@add')->name('routines.add');
+Route::get('/routine/add', 'RoutineController@add')->name('routines.add');
+Route::post('/routine/create', 'RoutineController@create')->name('routines.create');
+Route::get('/routine/create', 'RoutineController@create')->name('routines.create');
+Route::post('multiple_inputs', 'RoutineController@multiple_inputs');
+Route::get('multiple_inputs', 'RoutineController@multiple_inputs');
+
+// ユーザー詳細表示
+Route::get('/users/{id}', 'UserController@show')->name('users.show');
+
+
+
+
 Route::get('/home', 'HomeController@index')->name('home');
 // Route::GROUP(['middleware' => ['auth:user']], function() {
 

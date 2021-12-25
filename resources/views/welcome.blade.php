@@ -13,8 +13,9 @@
         <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet" />
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet" />
         <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="{{ asset('css/styles.css') }}" rel="stylesheet" />
+        <link href="{{ asset('css/app.css') }}" rel="stylesheet" />
         <!-- Styles -->
+
         <style>
             html, body {
                 background-color: #fff;
@@ -91,7 +92,7 @@
                     <div class="text-center">
                         <h1 class="mx-auto my-0 text-uppercase">Shearu</h1>
                         <h2 class="text-white-50 mx-auto mt-2 mb-5">ルーティン共有アプリで日々の習慣をより良くしよう</h2>
-                        <a class="btn btn-primary" href="#about">Get Started</a>
+                        <a class="btn rare-wind-gradient" href="{{ route('login') }}">Get Started</a>
                     </div>
                 </div>
             </div>
@@ -101,8 +102,10 @@
         <footer class="footer bg-black small text-center text-white-50"><div class="container px-4 px-lg-5">Copyright &copy; Your Website 2021</div></footer>
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Material Design Bootstrap -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.11/css/mdb.min.css" rel="stylesheet">
         <!-- Core theme JS-->
-        <script src="js/scripts.js"></script>
+        <script src="js/app.js"></script>
         <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
         <!-- * *                               SB Forms JS                               * *-->
         <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
