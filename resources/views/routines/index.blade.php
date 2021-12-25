@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container mt-4">
-  <div class="row d-flex justify-content-center">
+  <!-- <div class="row d-flex justify-content-center">
     <div class="row col-md-12">
 
         <aside class="col-3 d-none d-md-block position-fixed">
@@ -12,7 +12,7 @@
         </main>
 
     </div>
-  </div>
-  <a href="{{ route('users.show', ['id' => Auth::user()->id]) }}">Myroutine</a>
+  </div> -->
+    
 </div>
 @endsection
