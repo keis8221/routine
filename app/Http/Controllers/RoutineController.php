@@ -10,9 +10,9 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Models\Routine;
 use App\Models\Action;
-
 use Log;
 use Config;
+
 
 class RoutineController extends Controller
 {
@@ -66,45 +66,46 @@ class RoutineController extends Controller
     public function create(Request $request)
     {
         //Routineテーブルへの格納
-        $routine = new Routine;
-        $routine->user_id = Auth::user()->id;
-        $routine->title = $request->routine_title;
-        $routine->routine_introduction = $request->routine_introduction;
-        $routine->save();
+        // $routine = new Routine;
+        // $routine->user_id = Auth::user()->id;
+        // $routine->title = $request->routine_title;
+        // $routine->routine_introduction = $request->routine_introduction;
+        // $routine->save();
 
-        // $routine = Routine::create([
-        //     'user_id' => $user_id,
-        //     'title' => $request->routine_title,
-        //     'routine_introduction' => $request->routine_introduction
-        // ]);
-        try{
-            if ($routine) {
-                // Create is successful, back to list
-                return redirect()->route($this->getRoute())->with('success', Config::get('const.SUCCESS_CREATE_MESSAGE'));
-            } else {
-                // Create is failed
-                return redirect()->route($this->getRoute())->with('error', Config::get('const.FAILED_CREATE_MESSAGE'));
-            }
-        } catch (Exception $e) {
-            // Create is failed
-            return redirect()->route($this->getRoute())->with('error', Config::get('const.FAILED_CREATE_MESSAGE'));
-        }
+        // try{
+        //     if ($routine) {
+        //         return redirect()->route($this->getRoute())->with('success', Config::get('const.SUCCESS_CREATE_MESSAGE'));
+        //     } else {
+        //         return redirect()->route($this->getRoute())->with('error', Config::get('const.FAILED_CREATE_MESSAGE'));
+        //     }
+        // } catch (Exception $e) {
+        //     // Create is failed
+        //     return redirect()->route($this->getRoute())->with('error', Config::get('const.FAILED_CREATE_MESSAGE'));
+        // }
     }
 
-    public function multiple_inputs(Request $request)
+    public function multiple_posts(Request $request)
     {
-        
-        foreach($request->actions as $action) {
+        $routine = new Routine;
+        $routine->user_id = Auth::user()->id;
+        $routine->title = $request->title;
+        $routine->routine_introduction = $request->introduction;
+        $routine->save();
+
+        $routine = Routine::latest()->first();
+        $num = $routine->id;
+        $num += 1;
+
+        foreach((Array)$request->actions as $action) {
             $newAction = new Action;
-            $newAction->things = $action->do; // ここが入力された値
-            $newAction->introduction = $action->introduction; // ここが入力された値
-            $newAction->time = $action->time; // ここが入力された値
-            $newAction->item = $action->item; // ここが入力された値
-            $newAction->url = $action->item_url; // ここが入力された値
-            $newAction->image = $action->item_image; // ここが入力された値
+            $newAction->routine_id = $num;
+            $newAction->things = $action['things']; 
+            $newAction->action_introduction = $action['introduction']; 
+            $newAction->minutes = $action['time'];
+            $newAction->tool_name = $action['item'];
+            $newAction->tool_url = $action['item_url']; 
+            $newAction->tool_image = $action['item_image'];
+            $newAction->save();
         }
-        return view(
-            'routines.add'
-        );
     }
 }
