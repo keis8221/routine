@@ -27,8 +27,8 @@ Route::post('/routine/add', 'RoutineController@add')->name('routines.add');
 Route::get('/routine/add', 'RoutineController@add')->name('routines.add');
 Route::post('/routine/create', 'RoutineController@create')->name('routines.create');
 Route::get('/routine/create', 'RoutineController@create')->name('routines.create');
-Route::post('multiple_inputs', 'RoutineController@multiple_inputs');
-Route::get('multiple_inputs', 'RoutineController@multiple_inputs');
+Route::post('/multiple_posts', 'RoutineController@multiple_posts');
+Route::get('/multiple_posts', 'RoutineController@multiple_posts');
 
 // ユーザー詳細表示
 Route::get('/users/{id}', 'UserController@show')->name('users.show');

@@ -19,6 +19,8 @@
     <!-- Bootstrap core CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
     <!-- toastr -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -86,13 +88,16 @@
 <script>
     new Vue({
         el: '#app',
+        headers: {"X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr('content')},
         data: {
+            routine_title: "",
+            routine_introduction: "", 
             actions: [], // 複数入力のデータ（配列）
         },
         methods: {
         addForm() {
             const additionalForm = {
-                do: "",
+                things: "",
                 introduction: "",
                 time: "",
                 item: "",
@@ -105,13 +110,15 @@
             this.actions.splice(id, 1);
         },
         onSubmit() {
-            const url = '/multiple_inputs';
+            const url = '/multiple_posts';
             const params = {
+                title: this.routine_title,
+                introduction: this.routine_introduction,
                 actions: this.actions
             };
             axios.post(url, params)
                 .then(response => {
-                    // 成功した時
+                    location.href="{{ route('routines.index') }}";
                 })
                 .catch(error => {
                     // 失敗した時
