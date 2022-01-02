@@ -57,7 +57,7 @@
                                 <a class="nav-link" href="{{ route('routines.index') }}">投稿一覧</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('routines.add') }}">投稿する</a>
+                                <a class="nav-link" href="{{ route('routines.create') }}">投稿する</a>
                             </li>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -86,13 +86,14 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
 <script>
-    new Vue({
+    var app = new Vue({
         el: '#app',
         headers: {"X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr('content')},
         data: {
             routine_title: "",
-            routine_introduction: "", 
-            actions: [], // 複数入力のデータ（配列）
+            routine_introduction: "",
+            actions: [],
+            items: []
         },
         methods: {
         addForm() {
@@ -100,7 +101,7 @@
                 things: "",
                 introduction: "",
                 time: "",
-                item: "",
+                item_name: "",
                 item_url: "",
                 item_image: "",
             }
@@ -110,10 +111,10 @@
             this.actions.splice(id, 1);
         },
         onSubmit() {
-            const url = '/multiple_posts';
+            const url = '/routine/store';
             const params = {
-                title: this.routine_title,
-                introduction: this.routine_introduction,
+                routine_title: this.routine_title,
+                routine_introduction: this.routine_introduction,
                 actions: this.actions
             };
             axios.post(url, params)
@@ -123,9 +124,53 @@
                 .catch(error => {
                     // 失敗した時
                 });
+        }, 
+        search(){
+            const url = '/search';
+            axios.post(url, this.actions['item'])
+                .then(response => {
+                    this.items = response.data;
+                })
+                .catch(error => {
+                    // 失敗した時
+                });
         }
-    }
+        }
     });
+
+    // var item_search = new Vue ({
+    //     el: '#item',
+    //     data: {
+    //         items: []
+    //     },
+    //     methods: {
+    //     search(){
+    //         const url = '/search';
+    //         axios.post(url, this.actions['item'])
+    //             .then(response => {
+    //                 this.items = response.data
+    //             })
+    //             .catch(error => {
+    //                 // 失敗した時
+    //             });
+    //     }
+    //     }
+    // });
+
 </script>
 </body>
+<!-- ,
+        // onSubmit() {
+        //     const url = '/multiple_inputs';
+        //     const params = {
+        //         actions: this.actions
+        //     };
+        //     axios.post(url, params)
+        //         .then(response => {
+        //             location.href="{{ route('routines.index') }}";
+        //         })
+        //         .catch(error => {
+        //             // 失敗した時
+        //         });
+        // } -->
 </html>
