@@ -23,12 +23,13 @@ Auth::routes();
 # ユーザー投稿関係(index, show)
 
 Route::get('/routine', 'RoutineController@index')->name('routines.index');
-Route::post('/routine/add', 'RoutineController@add')->name('routines.add');
-Route::get('/routine/add', 'RoutineController@add')->name('routines.add');
 Route::post('/routine/create', 'RoutineController@create')->name('routines.create');
 Route::get('/routine/create', 'RoutineController@create')->name('routines.create');
-Route::post('/multiple_posts', 'RoutineController@multiple_posts');
-Route::get('/multiple_posts', 'RoutineController@multiple_posts');
+Route::post('/routine/store', 'RoutineController@store')->name('routines.store');
+Route::get('/routine/store', 'RoutineController@store')->name('routines.store');
+Route::post('/multiple_inputs', 'RoutineController@multiple_inputs');
+Route::get('/multiple_inputs', 'RoutineController@multiple_inputs');
+Route::get('/search', 'ItemSearchController@search');
 
 // ユーザー詳細表示
 Route::get('/users/{id}', 'UserController@show')->name('users.show');

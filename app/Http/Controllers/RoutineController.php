@@ -50,62 +50,54 @@ class RoutineController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function add()
+    public function create()
     {
         $routine = new Routine;
         $routine->user_id = Auth::user()->id;
 
         $action = new Action;
         $action->routine_id = $routine->id;
-        return view('routines.add', [
+        return view('routines.create', [
             'routine' => $routine,
             'action' => $action
         ]);
     }
 
-    public function create(Request $request)
+    public function store(Request $request)
     {
         //Routineテーブルへの格納
-        // $routine = new Routine;
-        // $routine->user_id = Auth::user()->id;
-        // $routine->title = $request->routine_title;
-        // $routine->routine_introduction = $request->routine_introduction;
-        // $routine->save();
-
-        // try{
-        //     if ($routine) {
-        //         return redirect()->route($this->getRoute())->with('success', Config::get('const.SUCCESS_CREATE_MESSAGE'));
-        //     } else {
-        //         return redirect()->route($this->getRoute())->with('error', Config::get('const.FAILED_CREATE_MESSAGE'));
-        //     }
-        // } catch (Exception $e) {
-        //     // Create is failed
-        //     return redirect()->route($this->getRoute())->with('error', Config::get('const.FAILED_CREATE_MESSAGE'));
-        // }
-    }
-
-    public function multiple_posts(Request $request)
-    {
         $routine = new Routine;
         $routine->user_id = Auth::user()->id;
-        $routine->title = $request->title;
-        $routine->routine_introduction = $request->introduction;
+        $routine->title = $request->routine_title;
+        $routine->routine_introduction = $request->routine_introduction;
         $routine->save();
+        $this->multiple_inputs($routine->id, $request->actions);
 
-        $routine = Routine::latest()->first();
-        $num = $routine->id;
-        $num += 1;
+        try{
+            if ($routine) {
+                return redirect()->route($this->getRoute())->with('success', Config::get('const.SUCCESS_CREATE_MESSAGE'));
+            } else {
+                return redirect()->route($this->getRoute())->with('error', Config::get('const.FAILED_CREATE_MESSAGE'));
+            }
+        } catch (Exception $e) {
+            // Create is failed
+            return redirect()->route($this->getRoute())->with('error', Config::get('const.FAILED_CREATE_MESSAGE'));
+        }
+    }
 
-        foreach((Array)$request->actions as $action) {
+    public function multiple_inputs($routinId, $actions)
+    {
+        foreach((Array)$actions as $action) {
             $newAction = new Action;
-            $newAction->routine_id = $num;
+            $newAction->routine_id = $routinId;
             $newAction->things = $action['things']; 
             $newAction->action_introduction = $action['introduction']; 
             $newAction->minutes = $action['time'];
-            $newAction->tool_name = $action['item'];
+            $newAction->tool_name = $action['item_name'];
             $newAction->tool_url = $action['item_url']; 
             $newAction->tool_image = $action['item_image'];
             $newAction->save();
-        }
+        
+    }
     }
 }
