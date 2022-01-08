@@ -52,15 +52,7 @@ class RoutineController extends Controller
      */
     public function create()
     {
-        $routine = new Routine;
-        $routine->user_id = Auth::user()->id;
-
-        $action = new Action;
-        $action->routine_id = $routine->id;
-        return view('routines.create', [
-            'routine' => $routine,
-            'action' => $action
-        ]);
+        return view('routines.create');
     }
 
     public function store(Request $request)
