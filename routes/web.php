@@ -29,7 +29,7 @@ Route::post('/routine/store', 'RoutineController@store')->name('routines.store')
 Route::get('/routine/store', 'RoutineController@store')->name('routines.store');
 Route::post('/multiple_inputs', 'RoutineController@multiple_inputs');
 Route::get('/multiple_inputs', 'RoutineController@multiple_inputs');
-Route::get('/search', 'ItemSearchController@search');
+Route::post('/search', 'ItemSearchController@search');
 
 // ユーザー詳細表示
 Route::get('/users/{id}', 'UserController@show')->name('users.show');

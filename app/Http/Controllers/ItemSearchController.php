@@ -13,14 +13,16 @@ class ItemSearchController extends Controller
         $client = new RakutenRws_Client();
 
         //定数化
-        define("RAKUTEN_APPLICATION_ID"     , config('app.rakuten_id'));
-        define("RAKUTEN_APPLICATION_SEACRET", config('app.rakuten_key'));
+        define("RAKUTEN_APPLICATION_ID", config('services.rakuten.rakuten_id'));
+        define("RAKUTEN_APPLICATION_SEACRET", config('services.rakuten.rakuten_key'));
 
         //アプリIDをセット
         $client->setApplicationId(RAKUTEN_APPLICATION_ID);
 
         //リクエストから検索キーワードを取り出し
-        $keyword = $request->input('keyword');
+        // $keyword = $request->input('keyword');
+        // $keyword = $request->action_item;
+        $keyword = $request->item_name;
 
         // IchibaItemSearch API から、指定条件で検索
         if(!empty($keyword)){ 
@@ -31,22 +33,24 @@ class ItemSearchController extends Controller
             // レスポンスが正しいかを isOk() で確認することができます
             if ($response->isOk()) {
                 $items = array();
-                //配列で結果をぶち込んで行きます
+                //配列に結果を代入していきます
                 foreach ($response as $item){
                     //画像サイズを変えたかったのでURLを整形します
                     $str = str_replace("_ex=128x128", "_ex=175x175", $item['mediumImageUrls'][0]['imageUrl']);
                     $items[] = array(
                         'itemName' => $item['itemName'],
-                        'itemPrice' => $item['itemPrice'],
                         'itemUrl' => $item['itemUrl'],
                         'mediumImageUrls' => $str,
                         'siteIcon' => "../images/rakuten_logo.png",
                     );
                 }
-                return $items;
+                return response()->json($items);
             } else {
+                var_dump($response);
                 echo 'Error:'.$response->getMessage();
             }
+        } else {
+            echo 'Error:failed';
         }
         
     }
