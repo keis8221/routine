@@ -32,7 +32,8 @@ Route::get('/multiple_inputs', 'RoutineController@multiple_inputs');
 Route::post('/search', 'ItemSearchController@search');
 
 // ユーザー詳細表示
-Route::get('/users/{id}', 'UserController@show')->name('users.show');
+Route::get('/users/show/{id}', 'UserController@show')->name('users.show');
+Route::get('/users/edit/{routine_id}', 'UserController@edit')->name('users.edit');
 
 
 

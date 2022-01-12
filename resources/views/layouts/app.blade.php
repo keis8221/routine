@@ -19,6 +19,10 @@
     <!-- Bootstrap core CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
+    <!-- Font Awesome -->
+    <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+
+
     <!-- axios -->
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
@@ -92,14 +96,87 @@
    object-fit: cover;
 } */
 .modal{
-  overflow-y: auto;
-  max-height: 100%;
+    overflow-y: auto;
+    max-height: 100%;
 }
 
+.navbar {
+    background-color: #26408B;
+}
+
+.routine-form-header {
+    background-color: #087CA7;
+    color: #fff;
+}
+
+.btn {
+    background-color: #087CA7;
+    color: #fff;
+    border-radius:30px 30px 30px 30px;
+}
+
+#form4{
+    position:relative;
+    max-width:300px;
+    margin-bottom:20px;
+}
+#form4-title{
+    position: absolute;
+    left: 95px;
+}
+
+#sbox4{
+    height:50px;
+    padding:0 10px; 
+    position:absolute; 
+    left:80px;
+    top:40px; 
+    border-radius:25px;
+    outline:0;
+    background:#eee;
+}
+#sbtn4{
+    height:50px;
+    width:50px;	
+    position:absolute; 
+    left:300px; 
+    top:40px;
+    background:#7fbfff;
+    color:#fff;
+    border:none;
+    border-radius:0 25px 25px 0;
+}
+#sbtn4 .fa-search{
+    font-size:20px;	
+    position:absolute;
+    top:30%;
+    left:30%;	
+}
+#sbtn4:hover{
+    color:#888;
+}
+
+.fa-heart{
+    margin-left:20px;
+    color:hotpink;
+}
+
+.fa-comments{
+    margin-left: 15px;
+    color:lightseagreen;
+}
+
+.action-minutes {
+    margin-left: 30px;
+}
+
+.card-title{
+    font-family: inherit;
+}
 </style>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-lg rare-wind-gradient ">
+        <nav class="navbar navbar-expand-lg">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">{{ config('app.name', 'Shearu') }}</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -177,15 +254,16 @@ Vue.component('open-modal',{
     },
 })
 
-var app = new Vue({
-    el: '#app',
+var form = new Vue({
+    el: '#form',
     headers: {"X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr('content')},
     data: {
         routine_title: "",
         routine_introduction: "",
+        uploadFile: null,
         actions: [],
         items: [],
-        showContent:false,
+        showContent:false
     },
     methods: {
         addForm() {
@@ -202,11 +280,18 @@ var app = new Vue({
         deleteForm(id) {
             this.actions.splice(id, 1);
         },
+        selectedFile: function(e) {
+            // 選択された File の情報を保存しておく
+            e.preventDefault();
+            let files = e.target.files;
+            this.uploadFile = files[0];
+        },
         onSubmit() {
             const url = '/routine/store';
             const params = {
-                routine_title: this.routine_title,
+                routine_title: this.routine_title,                
                 routine_introduction: this.routine_introduction,
+                routine_image: this.routine_image,
                 actions: this.actions
             };
             axios.post(url, params)
@@ -245,10 +330,11 @@ var app = new Vue({
             this.search(index)
         },    
         //モーダルウィンドウを閉じる
-        closeModal: function(){
+        closeModal: function() {
             this.showContent = false
         },
     }
 });
+
 </script>
 </body>

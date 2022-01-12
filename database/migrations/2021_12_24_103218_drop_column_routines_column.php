@@ -26,7 +26,7 @@ class DropColumnRoutinesColumn extends Migration
     public function down()
     {
         Schema::table('routines', function (Blueprint $table) {
-            $table->varchar('routine_image')->default(false);
+            $table->string('routine_image')->default(false);
         });
     }
 }
