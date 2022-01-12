@@ -67,6 +67,12 @@
             .m-b-md {
                 margin-bottom: 30px;
             }
+
+            .btn {
+                background-color: #087CA7;
+                border-radius:30px 30px 30px 30px;
+            }               
+
         </style>
     </head>
     <body>
@@ -92,7 +98,7 @@
                     <div class="text-center">
                         <h1 class="mx-auto my-0 text-uppercase">Shearu</h1>
                         <h2 class="text-white-50 mx-auto mt-2 mb-5">ルーティン共有アプリで日々の習慣をより良くしよう</h2>
-                        <a class="btn rare-wind-gradient" href="{{ route('login') }}">Get Started</a>
+                        <a class="btn text-white" href="{{ route('login') }}">Get Started</a>
                     </div>
                 </div>
             </div>

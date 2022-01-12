@@ -30,4 +30,10 @@ class UserController extends Controller
         $user = User::find($id);
         return view('users.show',['user' => $user]);
     }
+
+    public function edit($routine_id)
+    {
+        $user = User::find($routine_id);
+        return view('users.edit');
+    }
 }

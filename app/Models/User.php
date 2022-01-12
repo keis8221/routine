@@ -34,4 +34,12 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    Public function routine() {
+        return $this->hasMany('App\Models\Routine');
+    }
+
+    Public function follow() {
+        return $this->belongsToMany('App\Models\Follow');
+    }
+
 }

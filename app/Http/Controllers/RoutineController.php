@@ -26,7 +26,7 @@ class RoutineController extends Controller
     */
    public function index(Request $request)
    {
-       $user = new User;
+    //    $user = new User;
     //    // ユーザー投稿を検索で検索
     //    $freeWord = $request->input('free_word');
 
@@ -40,8 +40,10 @@ class RoutineController extends Controller
     //            'next' => $articles->appends($request->only('free_word'))->nextPageUrl()
     //        ]);
     //    }
-       return view(
-           'routines.index',['user' => $user]
+       $routines = Routine::orderBy('created_at', 'desc')->get();
+       return view('routines.index',[
+               'routines' => $routines
+               ]
        );
    }
 

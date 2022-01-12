@@ -6,7 +6,7 @@
     <div class="row">
       <div class="mx-auto col-md-7">
         <div class="card">
-          <h2 class="h4 card-header text-center rare-wind-gradient text-white">ユーザー登録</h2>
+          <h2 class="h4 card-header text-center ext-white" style="background-color: #087CA7">ユーザー登録</h2>
           <div class="card-body">
 
             <div class="user-form my-4">
@@ -79,7 +79,7 @@
                   <input class="form-control" type="text" id="self_introduction" name="self_introduction" placeholder="">
                 </div>
 
-                <button class="btn btn-block purple-gradient mt-2 mb-2" type="submit">
+                <button class="btn btn-block mt-2 mb-2" type="submit">
                   <span class="h6">ユーザー登録</span>
                 </button>
               </form>
