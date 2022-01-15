@@ -1,4 +1,4 @@
-<div id="card">
+<div id="post_list">
     <div class="col-md mb-4">
         <div class="card routine-card">
             <div class="card-body ">
@@ -11,7 +11,7 @@
                 <div class="d-flex">
                     <div class="col-5">
                         <div class="welcome-section waves-effect" style="margin-left: 20px;">
-                            <img src="public/assets/img/image02.jpg" class="img-responsive" alt=".."></img>
+                            <img src="" class="img-responsive" alt=".."></img>
                             <div class="border"></div>                        
                         </div>
                     </div>
@@ -28,19 +28,12 @@
                             </div>
                         @endforeach
                         <div class="d-flex justify-content-end h-10">
-                            <a @click="openModal">詳細を見る</a>
+                            <a @click="openModal2">詳細を見る</a>
                         </div>
 
                         <!-- モーダルウィンドウ -->
                         <open-modal class="modal"  v-show="showContent" v-on:from-child="closeModal">
-                        <div class='scroll-box' >
-                            <div class="d-flex flex-wrap" id="item-top" v-for="item in items">
-                            <div class="item-box">
-                                <img class="incart" :src=item.mediumImageUrls alt="">
-                                <p>@{{ item.itemName }}</p>
-                            </div>
-                            </div>
-                        </div>
+                            <div></div>
                         </open-modal>
                     </div>
                 </div>
@@ -48,6 +41,7 @@
                 <div class="d-flex justify-content-between">
                     <div class="">
                         <i class="far fa-heart"></i>
+                        <like-component></like-component>
                         <i class="far fa-comments"></i>
                     </div>
                     <div class="">

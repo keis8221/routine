@@ -1,4 +1,4 @@
-<div id="form">
+<div id="">
   <div id="" class="form-control">
     <div class="mb-3" >
       <label class="form-label">タイトル</label>
@@ -13,7 +13,7 @@
     <div class="mb-3" >
       <label class="form-label">ルーティンの写真</label>
       <!-- <input type="file" class="form-control" name="routine_image" v-model="routine_image"></input> -->
-      <input type="file" class="form-control" name="routine_image" @change="selectedFile"></input>
+      <input type="file" class="form-control"  @change="selectedFile"></input>
       
     </div>
 
@@ -59,12 +59,12 @@
 
         <!-- モーダルウィンドウ -->
         <open-modal class="modal"  v-show="showContent" v-on:from-child="closeModal">
-          <div class='scroll-box' >
-            <div class="d-flex flex-wrap" id="item-top" v-for="item in items">
-              <div class="item-box">
+          <div class='d-flex flex-wrap' >
+            <div class="scroll-box" style="width: 33%;" id="item-top" v-for="item in items">
+              <div class="" >
                   <img class="incart" :src=item.mediumImageUrls alt="">
                   <p>@{{ item.itemName }}</p>
-                  <btn class="btn" @click="select(index, item.itemName, item.itemUrl, item.mediumImageUrls)">選択</btn>
+                  <button class="btn" @click="select(index, item.itemName, item.itemUrl, item.mediumImageUrls)">選択</button>
               </div>
             </div>
           </div>
@@ -85,7 +85,7 @@
           アイテムの画像
         </div>
         <div class="form-component_content">
-          <input class="form-control" name="action_image" type="text"  v-model="action.item_image">
+          <input class="form-control" name="action_image"  type="text"  v-model="action.item_image">
         </div>
       </div>
 
@@ -95,6 +95,7 @@
       </div>
     </div>
   </div>
+
   <div class="float-right">
     <button class="btn" v-on:click="addForm">追加する</button>
   </div>  
@@ -102,8 +103,9 @@
   <hr>
   
 
-<div class="mx-auto d-flex justify-content-center align-items-start">
-  <button type="submit" class="btn w-auto" @click="onSubmit" >Submit</button>
-</div>
-</div>
+  <div class="mx-auto d-flex justify-content-center align-items-start">
+    <button type="submit" class="btn w-auto" @click="onSubmit" >Submit</button>
+  </div>
 
+
+</div>
