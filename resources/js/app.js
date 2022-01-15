@@ -8,6 +8,51 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 
+window.addEventListener('DOMContentLoaded', event => {
+
+    // Navbar shrink function
+    var navbarShrink = function () {
+        const navbarCollapsible = document.body.querySelector('#mainNav');
+        if (!navbarCollapsible) {
+            return;
+        }
+        if (window.scrollY === 0) {
+            navbarCollapsible.classList.remove('navbar-shrink')
+        } else {
+            navbarCollapsible.classList.add('navbar-shrink')
+        }
+
+    };
+
+    // Shrink the navbar 
+    navbarShrink();
+
+    // Shrink the navbar when page is scrolled
+    document.addEventListener('scroll', navbarShrink);
+
+    // Activate Bootstrap scrollspy on the main nav element
+    const mainNav = document.body.querySelector('#mainNav');
+    if (mainNav) {
+        new bootstrap.ScrollSpy(document.body, {
+            target: '#mainNav',
+            offset: 74,
+        });
+    };
+
+    // Collapse responsive navbar when toggler is visible
+    const navbarToggler = document.body.querySelector('.navbar-toggler');
+    const responsiveNavItems = [].slice.call(
+        document.querySelectorAll('#navbarResponsive .nav-link')
+    );
+    responsiveNavItems.map(function (responsiveNavItem) {
+        responsiveNavItem.addEventListener('click', () => {
+            if (window.getComputedStyle(navbarToggler).display !== 'none') {
+                navbarToggler.click();
+            }
+        });
+    });
+
+});
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -20,24 +65,20 @@ window.Vue = require('vue');
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
-
-Vue.component('modal-component', require('./component/ModalComponent.vue').default);
-
-
-import Modal from "./components/ModalComponent";
+Vue.component('like-component', require('./components/LikeComponent.vue').default);
+Vue.component('open-modal', require('./components/ModalComponent.vue').default);
 
 
 
-var form = new Vue({
-    el: '#form',
-    components: {
-        Modal
+var app = new Vue({
+    el: '#app',
+    headers: {
+        "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr('content')
     },
-    headers: {"X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr('content')},
     data: {
         routine_title: "",
         routine_introduction: "",
-        routine_image: "",
+        file: null,
         actions: [],
         items: [],
         showContent:false
@@ -47,7 +88,7 @@ var form = new Vue({
             const additionalForm = {
                 things: "",
                 introduction: "",
-                time: "",
+                time: null,
                 item_name: "",
                 item_url: "",
                 item_image: "",
@@ -57,17 +98,32 @@ var form = new Vue({
         deleteForm(id) {
             this.actions.splice(id, 1);
         },
+        selectedFile: function(e) {
+            // 選択された File の情報を保存しておく
+            e.preventDefault();
+            const files = e.target.files;
+            this.file = files[0];
+        },
         onSubmit() {
             const url = '/routine/store';
-            const params = {
-                routine_title: this.routine_title,                
-                routine_introduction: this.routine_introduction,
-                routine_image: this.routine_image,
-                actions: this.actions
+            const config = {
+                headers: {
+                  'content-type': 'multipart/form-data'
+                }
             };
-            axios.post(url, params)
+            let formData = new FormData();
+            formData.append('routine_title',this.routine_title);
+            formData.append('routine_introduction', this.routine_introduction);
+            formData.append('file', this.file);
+            formData.append('actions', JSON.stringify(this.actions));
+            // console.log(formData.get('actions'));
+            // for (let value of formData.entries()) { 
+            //     console.log(value); 
+            // }
+            axios.post(url, formData, config)
                 .then(response => {
-                    location.href="{{ route('routines.index') }}";
+                    location.href = '/routine'
+                    // console.log(response.data);
                 })
                 .catch(error => {
                     // 失敗した時
@@ -96,30 +152,16 @@ var form = new Vue({
             this.closeModal()
         },
         //モーダルウィンドウを開く
-        openModal(index){
+        openModal: function(index){
             this.showContent = true
             this.search(index)
-        },    
+        },
+        openModal2: function() {
+            this.showContent = true
+        },
         //モーダルウィンドウを閉じる
-        closeModal() {
+        closeModal: function() {
             this.showContent = false
         },
-    }
-});
-
-const card = new Vue({
-    el: '#card',
-    data: {
-        showContent:false,
-    },
-    methods: {
-        //モーダルウィンドウを開く
-        openModal() {
-            this.showContent = true
-        },    
-        //モーダルウィンドウを閉じる
-        closeModal() {
-            this.showContent = false
-        }
     }
 });

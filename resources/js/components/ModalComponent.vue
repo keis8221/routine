@@ -8,36 +8,18 @@
 </template>
 
 <script>
-    export default {
-        props: {
-            methods:{
-                clickEvent() {
-                    this.$emit('from-child'),
-                    document.getElementById('item-top').scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                },
-                stopEvent() {
-                    event.stopPropagation()
-            }
-            }
+export default {
+    methods :{
+        clickEvent: function(){
+            this.$emit('from-child'),
+            document.getElementById('item-top').scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        },
+        stopEvent: function(){
+            event.stopPropagation()
         }
     }
-
-// Vue.component('open-modal',{
-//     methods :{
-//         clickEvent: function(){
-//             this.$emit('from-child'),
-//             document.getElementById('item-top').scrollIntoView({
-//                 behavior: 'smooth',
-//                 block: 'start'
-//             });
-//         },
-//         stopEvent: function(){
-//             event.stopPropagation()
-//         }
-        
-//     },
-// })
+}
 </script>
