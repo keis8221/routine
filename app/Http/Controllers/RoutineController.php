@@ -21,6 +21,16 @@ class RoutineController extends Controller
         return 'routines.index';
     }
 
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /* 投稿一覧の表示
     * @param Request $request
     * @return Application|Factory|JsonResponse|View

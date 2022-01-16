@@ -13,7 +13,7 @@
     <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet" />
     <!-- Core theme CSS (includes Bootstrap)-->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet" />
+  
 
 </head>
 
@@ -25,8 +25,8 @@
             <div class="d-flex justify-content-center">
                 <div class="text-center">
                     <h1 class="mx-auto my-0 text-uppercase">SHEARU</h1>
-                    <h2 class="text-white-50 mx-auto mt-2 mb-5">ルーティン共有アプリで<br>日々の習慣をより良くしよう</h2>
-                    <button class="btn text-white" style="border-radius: 30px;" href="{{ route('login') }}">Get Started</button>
+                    <h2 class="catch_copy text-white-50 mx-auto mt-2 mb-5">ルーティン共有アプリで<br>日々の習慣をより良くしよう</h2>
+                    <a class="btn text-white" style="border-radius: 30px;" href="{{ route('routines.index') }}">Get Started</a>
                 </div>
             </div>
         </div>

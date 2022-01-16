@@ -99,7 +99,6 @@ var app = new Vue({
             this.actions.splice(id, 1);
         },
         selectedFile: function(e) {
-            // 選択された File の情報を保存しておく
             e.preventDefault();
             const files = e.target.files;
             this.file = files[0];

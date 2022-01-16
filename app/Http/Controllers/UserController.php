@@ -13,6 +13,12 @@ use Config;
 
 class UserController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     // private User $user;
 
     // public function __construct(
