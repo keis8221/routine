@@ -18,7 +18,7 @@
 						$table->increments('id');
 						$table->integer('user_id')->nullable()->unsigned();
 						$table->integer('routine_id')->nullable()->unsigned();
-						$table->timestamps();
+                        $table->timestamps();
 						//$table->foreign("user_id")->references("id")->on("users");
 						//$table->foreign("routine_id")->references("id")->on("routines");
 

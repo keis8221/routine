@@ -1,8 +1,8 @@
 <template>
     <div id="overlay" v-on:click="clickEvent">
         <div id="content" v-on:click="stopEvent">
-        <p><slot></slot></p>
-        <button class="btn" v-on:click="clickEvent">close</button>
+            <p><slot></slot></p>
+            <button class="btn" v-on:click="clickEvent">close</button>
         </div>
     </div>
 </template>

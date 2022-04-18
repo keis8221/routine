@@ -18,7 +18,7 @@
 						$table->increments('id');
 						$table->integer('follower_id')->nullable()->unsigned();
 						$table->integer('followee_id')->nullable()->unsigned();
-						$table->timestamps();
+                        $table->timestamps();
 						//$table->foreign("follower_id")->references("id")->on("users");
 						//$table->foreign("followee_id")->references("id")->on("users");
 

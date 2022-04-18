@@ -12,9 +12,7 @@
 
     <div class="mb-3" >
       <label class="form-label">ルーティンの写真</label>
-      <!-- <input type="file" class="form-control" name="routine_image" v-model="routine_image"></input> -->
       <input type="file" class="form-control"  @change="selectedFile"></input>
-      
     </div>
 
     <div v-for="(action,index) in actions">
@@ -55,13 +53,12 @@
           </div>
           <button class="btn w-auto col-3" @click="openModal(index)">検索する</button>
         </div>
-
-
+        
         <!-- モーダルウィンドウ -->
         <open-modal class="modal"  v-show="showContent" v-on:from-child="closeModal">
-          <div class='d-flex flex-wrap' >
+          <div class='d-flex flex-wrap'>
             <div class="scroll-box" style="width: 33%;" id="item-top" v-for="item in items">
-              <div class="" >
+              <div class="">
                   <img class="incart" :src=item.mediumImageUrls alt="">
                   <p>@{{ item.itemName }}</p>
                   <button class="btn" @click="select(index, item.itemName, item.itemUrl, item.mediumImageUrls)">選択</button>
@@ -94,18 +91,17 @@
         <button class="btn justify-content-end" v-on:click="deleteForm(index)">削除</button>
       </div>
     </div>
-  </div>
-
-  <div class="float-right">
-    <button class="btn" v-on:click="addForm">追加する</button>
-  </div>  
-
-  <hr>
   
 
-  <div class="mx-auto d-flex justify-content-center align-items-start">
-    <button type="submit" class="btn w-auto" @click="onSubmit" >Submit</button>
-  </div>
+    <div class="float-right">
+      <button class="btn" v-on:click="addForm">追加する</button>
+    </div>  
 
+    <hr>
+    
+    <div class="mx-auto d-flex justify-content-center align-items-start">
+      <button type="submit" class="btn w-auto" @click="onSubmit" >Submit</button>
+    </div>
+  </div>
 
 </div>

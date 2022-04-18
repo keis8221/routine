@@ -9,7 +9,7 @@
         @include('sidebar.list')
       </div>
 
-      <div class="col-7 offset-md-4">
+      <div class="col-7 offset-md-4" style="overflow: scroll;">
         @include('routines.list', compact('routines'))
       </div>
     </div>

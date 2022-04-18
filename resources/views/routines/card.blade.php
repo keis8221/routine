@@ -9,13 +9,14 @@
                     </p>
                 </div>
                 <div class="d-flex">
-                    <div class="col-5">
-                        <div class="welcome-section waves-effect" style="margin-left: 20px;">
-                            <img src="" class="img-responsive" alt=".."></img>
-                            <div class="border"></div>                        
+                    <div class="col-6">
+                        <div class="welcome-section waves-effect img-responsive" style="margin-left: 20px;">
+                            <img src="{{ asset($routine->routine_image) }}"  alt=".."></img>         
                         </div>
                     </div>
-                    <div class="card-text col-7">
+                    <div class="card-text col-6">
+                        <p>{{ $routine->routine_introduction }}</p>
+                        <p>ルーティン内容</p>
                         @foreach($routine->action as $action)
                             <div class="d-flex" style="margin-left: 40px;">
                                 <div>
@@ -27,28 +28,33 @@
                                 </div>
                             </div>
                         @endforeach
-                        <div class="d-flex justify-content-end h-10">
-                            <a @click="openModal2">詳細を見る</a>
+                        <div class="d-flex justify-content-start h-10">
+                            <a @click="openModal2({{$routine->id}})">詳細を見る</a>
                         </div>
-
-                        <!-- モーダルウィンドウ -->
-                        <open-modal class="modal"  v-show="showContent" v-on:from-child="closeModal">
-                            <div></div>
-                        </open-modal>
                     </div>
                 </div>
 
-                <div class="d-flex justify-content-between">
-                    <div class="">
-                        <i class="far fa-heart"></i>
-                        <like-component></like-component>
-                        <i class="far fa-comments"></i>
+                <hr>
+
+                <div class="d-flex justify-content-between mt-2">
+                    <div class="d-flex">
+                        <like-component
+                        :initial-is-liked-by='@json($routine->isLikedBy(Auth::user()))'
+                        :initial-count-likes='@json($routine->count_likes)'
+                        :authorized='@json(Auth::check())'
+                        endpoint="{{ route('routines.like', ['routine' => $routine]) }}"
+                        >
+                        </like-component>
+                        <a class="in-link p-1" href="{{ route('routines.show', ['routine' => $routine]) }}">
+                            <i class="far fa-comments"></i>
+                        </a>
+
                     </div>
                     <div class="">
-                        <a href="{{ route('users.show', ['id' => $routine->user_id]) }}" class="in-link text-dark">
+                        <a href="{{ route('users.show',$routine->user_id) }}" class="in-link text-dark">
                             <img class="user-icon rounded-circle" src="{{ $routine->user->profile_image }}">
                         </a>
-                        <a href="{{ route('users.show', ['id' => $routine->user_id]) }}" class="font-weight-bold user-name-link text-dark mr-4">
+                        <a href="{{ route('users.show', $routine->user_id) }}" class="font-weight-bold user-name-link text-dark mr-4">
                                 {{ $routine->user->name }}
                         </a>
                     </div>

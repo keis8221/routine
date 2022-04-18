@@ -35,8 +35,8 @@ class User extends Authenticatable
         return $this->hasMany('App\Models\Routine');
     }
 
-    Public function like() {
-        return $this->hasMany('App\Models\Like');
+    Public function likes() {
+        return $this->belongsToMany(Routine::class, 'likes')->withTimestamps();
     }
 
     Public function follow() {

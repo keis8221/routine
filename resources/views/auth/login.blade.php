@@ -1,11 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container mt-5">
+<div class="container mt-5" >
     <div class="row">
-      <div class="mx-auto col-md-7">
-        <div class="card mt-3">
-          <h2 class="h4 card-header text-center text-white" style="background-color: #087CA7;">ログイン</h2>
+      <div class="mx-auto col-md-7" style="margin-top: 60px;">
+        <div class="card mt-3" style="border-radius: 10px;">
+          <h2 class="h4 card-header text-center text-white" style="border-radius: 10px 10px 0px 0px; background-color: #087CA7;">ログイン</h2>
           <div class="card-body">
             <div class="user-form my-4">
               <form method="POST" action="{{ route('login') }}">
@@ -13,12 +13,12 @@
 
                 <div class="form-group">
                   <label for="email">メールアドレス</label>
-                  <input class="form-control" type="text" id="email" name="email" value="{{ old('email') }}">
+                  <input class="form-control mb-3" type="text" style="border-radius: 20px;" id="email" name="email" value="{{ old('email') }}">
                 </div>
 
                 <div class="form-group">
                   <label for="password">パスワード</label>
-                  <input class="form-control" type="password" id="password" name="password" >
+                  <input class="form-control mb-3" type="password" style="border-radius: 20px;" id="password" name="password" >
                 </div>
 
                 <!-- 次回から自動でログインする(remember meトークン) -->

@@ -9,7 +9,7 @@ use Illuminate\Foundation\Http\FormRequest;
 //2.  public function store( CommentsValidation $request ){ //example
 //*************************************************************
 
-class CommentsValidation extends FormRequest
+class CommentRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -31,7 +31,7 @@ class CommentsValidation extends FormRequest
     {
         //[ *2. Validation rule description location ]
         return [
-				"comment" => "nullable", //string('comment')->nullable()
+				"comment" => "nullable|max:250", //string('comment')->nullable()
 				"user_id" => "nullable|integer", //integer('user_id')->nullable()
 				"routine_id" => "nullable|integer", //integer('routine_id')->nullable()
 
