@@ -20,7 +20,7 @@
 						$table->string('title')->nullable();
 						$table->string('routine_introduction')->nullable();
 						$table->string('routine_image')->nullable();
-						$table->timestamps();
+                        $table->timestamps();
 						//$table->foreign("user_id")->references("id")->on("users");
 
 

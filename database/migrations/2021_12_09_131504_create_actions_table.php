@@ -23,7 +23,7 @@
 						$table->string('tool_url')->nullable();
 						$table->string('tool_image')->nullable();
 						$table->string('action_introduction')->nullable();
-						$table->timestamps();
+                        $table->timestamps();
 						
 
                     //*********************************

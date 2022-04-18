@@ -23,9 +23,8 @@
 						$table->string('password')->nullable();
 						$table->integer('age')->nullable();
 						$table->string('sex')->nullable();
-						$table->timestamps();
-
-
+                        $table->timestamps();
+                        $table->softDelets();
 
 						// ----------------------------------------------------
 						// -- SELECT [users]--

@@ -3,9 +3,14 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Askedio\SoftCascade\Traits\SoftCascadeTrait;
 
 class Routine extends Model
 {
+    use SoftDeletes;
+    use SoftCascadeTrait;
+    
     /**
      * The attributes that are mass assignable.
      *
@@ -17,6 +22,8 @@ class Routine extends Model
         'routine_introduction'
     ];
 
+    protected $softCascade = ['comments'];
+
     Public function user() {
         return $this->BelongsTo('App\Models\User');
     }
@@ -25,19 +32,21 @@ class Routine extends Model
         return $this->HasMany('App\Models\Action');
     }
 
-    Public function like() {
-        return $this->HasMany('App\Models\Like');
+    Public function likes() {
+        return $this->belongsToMany(User::class, 'likes')->withTimestamps();
     }
 
-    public function isLikedBy(?User $user): bool
-    {
+    public function isLikedBy(?User $user): bool {
         return $user
-            ? (bool)$this->like->where('id', $user->id)->count()
+            ? (bool)$this->likes->where('user_id', $user->id)->count()
             : false;
     }
 
-    public function getCountLikesAttribute(): int
-    {
-        return $this->like->count();
+    public function getCountLikesAttribute() {
+        return $this->likes->count();
+    }
+
+    public function comments() {
+        return $this->HasMany(Comment::class);
     }
 }

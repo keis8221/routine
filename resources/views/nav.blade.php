@@ -29,7 +29,7 @@
                         </a>
                         <ul class="dropdown-menu dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                             <li><a href="{{ route('users.show', ['id' => Auth::user()->id]) }}">Myroutine</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
+                            <li><a class="dropdown-item" href="#">個人情報設定</a></li>
                             <li><a class="dropdown-item" href="#">Something else here</a></li>
                         </ul>
                     </li>

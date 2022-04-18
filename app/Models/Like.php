@@ -16,11 +16,11 @@ class Like extends Model
         'routine_id'
     ];
 
-    Public function user() {
-        this()->belongsTo('App\Models\User');
-    }
+    // Public function user() {
+    //     this()->belongsTo('App\Models\User');
+    // }
 
-    Public function routine() {
-        this()->belongsTo('App\Models\Routine');
-    }
+    // Public function routine() {
+    //     this()->belongsTo('App\Models\Routine');
+    // }
 }

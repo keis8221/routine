@@ -1,9 +1,7 @@
-/**
- * First we will load all of this project's JavaScript dependencies which
- * includes Vue and other libraries. It is a great starting point when
- * building robust, powerful web applications using Vue and Laravel.
- */
 
+
+import LikeComponent from './components/LikeComponent'
+// import ModalComponent from './components/ModalComponent'
 require('./bootstrap');
 
 window.Vue = require('vue');
@@ -53,6 +51,7 @@ window.addEventListener('DOMContentLoaded', event => {
     });
 
 });
+
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -69,9 +68,11 @@ Vue.component('like-component', require('./components/LikeComponent.vue').defaul
 Vue.component('open-modal', require('./components/ModalComponent.vue').default);
 
 
-
 var app = new Vue({
     el: '#app',
+    components: {
+        LikeComponent
+    },
     headers: {
         "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr('content')
     },
@@ -81,7 +82,9 @@ var app = new Vue({
         file: null,
         actions: [],
         items: [],
-        showContent:false
+        showContent:false,
+        show_id: "",
+        detail_routine: []
     },
     methods: {
         addForm() {
@@ -122,7 +125,6 @@ var app = new Vue({
             axios.post(url, formData, config)
                 .then(response => {
                     location.href = '/routine'
-                    // console.log(response.data);
                 })
                 .catch(error => {
                     // 失敗した時
@@ -155,8 +157,9 @@ var app = new Vue({
             this.showContent = true
             this.search(index)
         },
-        openModal2: function() {
+        openModal2: function(index) {
             this.showContent = true
+            this.show(index)
         },
         //モーダルウィンドウを閉じる
         closeModal: function() {
