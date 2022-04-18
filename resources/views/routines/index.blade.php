@@ -1,23 +1,20 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">Dashboard</div>
+<div class="container mt-4">
+  <div class="row d-flex justify-content-center">
+    <div class="row col-12">
 
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
+      <div class="col-3  d-md-block">
+        @include('sidebar.list')
+      </div>
 
-                    You are logged in!
-                </div>
-            </div>
-        </div>
+      <div class="col-7 offset-md-4" style="overflow: scroll;">
+        @include('routines.list', compact('routines'))
+      </div>
     </div>
+  </div>
 </div>
 @endsection
+
+

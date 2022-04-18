@@ -17,7 +17,7 @@
 
 						$table->increments('id');
 						$table->string('name')->nullable();
-						$table->timestamps();
+                        $table->timestamps();
 						//$table->foreign("id")->references("id")->on("routine_tag");
 
 

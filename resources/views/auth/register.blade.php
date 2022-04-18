@@ -4,47 +4,47 @@
 
   <div class="container my-5">
     <div class="row">
-      <div class="mx-auto col-md-7">
+      <div class="mx-auto col-md-7" style="margin-top: 60px;">
         <div class="card">
-          <h2 class="h4 card-header text-center purple-gradient text-white">ユーザー登録</h2>
+          <h2 class="h4 card-header text-center text-white mb-3" style="border-radius: 10px 10px 0px 0px; background-color: #087CA7">ユーザー登録</h2>
           <div class="card-body">
 
             <div class="user-form my-4">
               <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
                 @csrf
-                <div class="form-group">
+                <div class="form-group mb-3">
                   <label for="name">
                     ユーザー名
                     <small class="text-danger">（必須）</small>
                   </label>
-                  <input class="form-control" type="text" id="name" name="name" value="{{ old('name') }}" placeholder="※15文字以内">
+                  <input class="form-control" style="border-radius: 20px;" type="text" id="name" name="name" value="{{ old('name') }}" placeholder="※15文字以内">
                 </div>
 
-                <div class="form-group">
+                <div class="form-group mb-3">
                   <label for="email">
                     メールアドレス
                     <small class="text-danger">（必須）</small>
                   </label>
-                  <input class="form-control" type="text" id="email" name="email" value="{{ old('email') }}" placeholder="例）example@co.jp">
+                  <input class="form-control" style="border-radius: 20px;" type="text" id="email" name="email" value="{{ old('email') }}" placeholder="例）example@co.jp">
                 </div>
 
-                <div class="form-group">
+                <div class="form-group mb-3">
                   <label for="password">
                     パスワード
                     <small class="text-danger">（必須）</small>
                   </label>
-                  <input class="form-control" type="password" id="password" name="password" placeholder="※8文字以上">
+                  <input class="form-control" style="border-radius: 20px;" type="password" id="password" name="password" placeholder="※8文字以上">
                 </div>
 
-                <div class="form-group">
+                <div class="form-group mb-3">
                   <label for="password_confirmation">
                     パスワードの確認
                     <small class="text-danger">（必須）</small>
                   </label>
-                  <input class="form-control" type="password" id="password_confirmation" name="password_confirmation" placeholder="再入力してください">
+                  <input class="form-control" style="border-radius: 20px;" type="password" id="password_confirmation" name="password_confirmation" placeholder="再入力してください">
                 </div>
 
-                <div class="form-group">
+                <div class="form-group mb-3">
                   <label for="sex">
                     性別
                     <small class="text-danger">（必須）</small>
@@ -55,15 +55,15 @@
                   <br>
                 </div>
 
-                <div class="form-group">
+                <div class="form-group mb-3">
                   <label for="age">
                     年齢
                     <small class="text-danger">（必須）</small>
                   </label>
-                  <input class="form-control" type="" id="age" name="age" placeholder="">
+                  <input class="form-control" style="border-radius: 20px;" type="" id="age" name="age" placeholder="">
                 </div>
 
-                <div class="form-group">
+                <div class="form-group mb-3">
                   <label for="profile_image">
                     プロフィール画像
                     <small class="blue-grey-text">（任意）</small>
@@ -71,15 +71,15 @@
                   <input  type="file" id="profile_image" name="profile_image" accept="image/*">
                 </div>
 
-                <div class="form-group">
+                <div class="form-group mb-3">
                   <label for="self_introduction">
                     自己紹介
                     <small class="text-danger">（必須）</small>
                   </label>
-                  <input class="form-control" type="text" id="self_introduction" name="self_introduction" placeholder="">
+                  <input class="form-control" style="border-radius: 20px;" type="text" id="self_introduction" name="self_introduction" placeholder="">
                 </div>
 
-                <button class="btn btn-block purple-gradient mt-2 mb-2" type="submit">
+                <button class="btn btn-block mt-2 mb-2" type="submit">
                   <span class="h6">ユーザー登録</span>
                 </button>
               </form>
@@ -95,3 +95,4 @@
     </div>
   </div>
 @endsection
+

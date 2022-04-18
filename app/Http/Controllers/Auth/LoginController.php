@@ -51,8 +51,8 @@ class LoginController extends Controller
      */
     protected function authenticated(Request $request)
     {
-        // フラッシュメッセージを表示
-        toastr()->success('ログインしました');
+        // // フラッシュメッセージを表示
+        // toastr()->success('ログインしました');
         return redirect($this->redirectTo);
     }
     
